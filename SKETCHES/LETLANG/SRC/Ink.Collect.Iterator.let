@@ -1,0 +1,73 @@
+at Ink.Collect {
+
+    type Iterator = trait {
+
+        this(Element)
+  
+        extends IterableOnce {
+            final Iterator() = this
+        }
+  
+        region "Operations" {
+
+            /**
+             * The element this [[type]]
+             * currently points at.
+             */
+            get Current {
+                is Element
+                /**
+                 * If the subsequent [[Move]] call
+                 * returned [[False]].
+                 */
+                throws StateException
+            }
+
+            /**
+             * Tries to move this iterator to the
+             * next position, possibly updating
+             * the [[Current current element]].
+             * === Returns ===
+             *  [[True]] if a [[Current new element]
+             *  is available.
+             *  [[False]] otherwise.
+             * === Throws ===
+             *  Even if called after it returned [[False]]
+             *  once, this does not throw an exception.
+             */
+            ref fun Move() {
+                is Boolean
+            }
+
+            /**
+             * Tries to split this [[type]] into two (more
+             * or less) equally sized iterators.
+             */
+            ref fun Split() {
+                is optional Iterator(Element)
+            }
+
+        }
+
+        region "Characteristics" {
+
+            /**
+             * Weather or not the [[Iterator iteartors]]
+             * produced by [[Split]] are [[IsSubsized subsized]]
+             * which includes bing [[IsSized sized]].
+             */
+            get IsSubsized {
+                is Boolean
+            }
+
+            /** <inherit/> */
+            override get IsSized {
+                is Boolean
+                is True if IsSubsized
+            }
+
+        }
+
+    }
+
+}
