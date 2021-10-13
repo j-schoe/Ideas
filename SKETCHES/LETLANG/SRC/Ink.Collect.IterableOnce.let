@@ -1,0 +1,93 @@
+at Ink.Collect {
+
+    type IterableOnce = trait {
+
+        this(Element)
+
+        /**
+         * The type of the elements this [[type]] contains.
+         */
+        covariant type Element
+
+        region "Properties" {
+
+            /**
+             * Weather or not this [[type]] is open.
+             *
+             * [[Operative]] members can only be
+             * used (without throwing a [[StateException]])
+             * if this is [[False]].
+             */
+            get IsOpen {
+                is Boolean
+            }
+
+            /**
+             * The amount of elements in this [[this]].
+             */
+            get Count {
+                is VarNat
+                /**
+                 * If this [[type]] is not [[IsOpen open]].
+                 */
+                throws StateException if not IsOpen
+                /**
+                 * If this [[type]]] is not [[IsSized sized]].
+                 */
+                throws StateException if not IsSized
+            }
+
+        }
+  
+        region "Operations" {
+
+            /**
+             * An [[Iterator]] used to traverse through
+             * the elements of this [[type]].
+             */
+            (@Operative)
+            fun Iterator {
+                is Iterator(Element)
+                /**
+                 * If this [[type]] is not [[IsOpen open]].
+                 */
+                throws StateException if not IsOpen
+            }
+
+        }
+  
+        region "Characteristics" {
+
+            /**
+             * Indicates whether or not this
+             * [[type]] is [[Count sized]].
+             */
+            let IsSized {
+                is Boolean
+            }
+
+            /**
+             * If present the elements must be
+             * sorted by this order relation.
+             * If absent the elements are returned
+             * in an arbitrary order.
+             */
+            let Order {
+                is optional Order(Element)
+            }
+
+            /**
+             * If present the elements must be
+             * unique by this equilvalence relation.
+             * If absent the elements can be present
+             * multiple times.
+             */
+            let Unique {
+                is optional Equivalence(Element)            
+            }
+
+        }
+
+    }
+
+}
