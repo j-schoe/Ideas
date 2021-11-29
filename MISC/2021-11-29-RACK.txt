@@ -56,12 +56,12 @@ HOUSING
 0.9  x  125  x  58.86  x 2
 0.9  x  125  x  95.7   x 2
 
-DOOR
+DOOR VAR1
 0.9  x  97.3  x  47.9  x 2
 
 DOOR BACK FRAME
-0.9  x  0.9  x  48.26  x  4
-0.9  x  0.9  x  87.1   x  4
+? x ? x  48.26  x  4
+? x ? x  87.1   x  4
 
 70     x 4             ~= 280   (of 300)  x 2
 48.26  x 6             ~= 300   (of 300)
@@ -73,9 +73,13 @@ DOOR BACK FRAME
 0.9 x 125 x 250  x 2        EUR:  2 x 73.7 = 147.4
 
 
+ORDER:
+4005004                  x5
+7633541 w=957+2          x2
+7633541 w=589+2          x2
+7633541 w=973+2 l=479+2  x2
 
-PRODUCT NUMBERS:
-14400716  BARS
-27750012  PLATES
-10253125  HANDLE
+6503848 x1or2
+8675821 x2
+
 
